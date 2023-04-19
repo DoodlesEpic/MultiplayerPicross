@@ -11,8 +11,6 @@
 	let loading = false;
 	let fullName: string | null = profile?.full_name;
 	let username: string | null = profile?.username;
-	let website: string | null = profile?.website;
-	let avatarUrl: string | null = profile?.avatar_url;
 
 	function handleSubmit() {
 		loading = true;
@@ -43,11 +41,6 @@
 		<div>
 			<label for="username">Username</label>
 			<input id="username" name="username" type="text" value={form?.username ?? username} />
-		</div>
-
-		<div>
-			<label for="website">Website</label>
-			<input id="website" name="website" type="url" value={form?.website ?? website} />
 		</div>
 
 		<div>
