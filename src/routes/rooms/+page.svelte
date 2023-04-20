@@ -19,9 +19,11 @@
 			<li class="row mb-3">
 				<div class="card">
 					<div class="card-body">
-						<h2 class="card-title">{room.creator}</h2>
-						<p>{room.created_at}</p>
-						<p>{room.players?.length ?? 0}</p>
+						<h2 class="card-title">Room {room.creator.slice(0, 4)}</h2>
+						<p class="card-subtitle text-body-secondary mb-3">
+							Created {new Date(room.created_at).toLocaleString()}
+						</p>
+						<p>{room.players?.length ?? 'No '} players</p>
 					</div>
 				</div>
 			</li>
