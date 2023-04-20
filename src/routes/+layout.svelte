@@ -25,8 +25,8 @@
 
 <nav class="navbar sticky-top shadow-sm">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="rooms">Multiplayer Picross</a>
-		<a class="navbar-brand" href="account">{session?.user?.email ?? 'Account'}</a>
+		<a class="navbar-brand" href="/rooms">Multiplayer Picross</a>
+		<a class="navbar-brand" href="/account">{session?.user?.email ?? 'Account'}</a>
 	</div>
 </nav>
 <div class="container mt-5">
