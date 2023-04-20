@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../app.scss';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import type { LayoutData } from './$types';
