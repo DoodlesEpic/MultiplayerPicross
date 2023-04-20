@@ -33,4 +33,4 @@
 	<p>No rooms</p>
 {/if}
 
-<button class="btn btn-primary" disabled>Create room</button>
+<button class="btn btn-primary mt-2" disabled>Create room</button>

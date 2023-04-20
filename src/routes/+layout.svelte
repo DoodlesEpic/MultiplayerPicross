@@ -23,6 +23,12 @@
 	<title>User Management</title>
 </svelte:head>
 
-<div class="container" style="padding: 50px 0 100px 0">
+<nav class="navbar sticky-top shadow-sm">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="rooms">Multiplayer Picross</a>
+		<a class="navbar-brand" href="account">{session?.user?.email ?? 'Account'}</a>
+	</div>
+</nav>
+<div class="container mt-5">
 	<slot />
 </div>
