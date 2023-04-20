@@ -11,24 +11,24 @@
 	console.log(roomlistlength);
 </script>
 
-<div>
-	<h1>Rooms</h1>
+<h1 class="text-center mb-3">Rooms</h1>
 
-	{#if roomlistlength > 0}
-		<ul>
-			{#each roomlist as room}
-				<li>
-					<div>
-						<h2>{room.creator}</h2>
+{#if roomlistlength > 0}
+	<ul>
+		{#each roomlist as room}
+			<li class="row mb-3">
+				<div class="card">
+					<div class="card-body">
+						<h2 class="card-title">{room.creator}</h2>
 						<p>{room.created_at}</p>
 						<p>{room.players?.length ?? 0}</p>
 					</div>
-				</li>
-			{/each}
-		</ul>
-	{:else}
-		<p>No rooms</p>
-	{/if}
+				</div>
+			</li>
+		{/each}
+	</ul>
+{:else}
+	<p>No rooms</p>
+{/if}
 
-	<button disabled>Create room</button>
-</div>
+<button class="btn btn-primary" disabled>Create room</button>
