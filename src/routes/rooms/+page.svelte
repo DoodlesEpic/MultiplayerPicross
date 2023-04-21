@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -32,4 +33,6 @@
 	<p>No rooms</p>
 {/if}
 
-<button class="btn btn-primary mt-2" disabled>Create room</button>
+<form method="post" action="?/create">
+	<button class="btn btn-primary">Create room</button>
+</form>
