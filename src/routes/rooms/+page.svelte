@@ -12,17 +12,17 @@
 <h1 class="text-center mb-3">Rooms</h1>
 
 {#if roomlistlength > 0}
-	<ul>
+	<ul class="p-0">
 		{#each roomlist as room}
-			<a href="/games/{room.id}">
-				<li class="row mb-3">
-					<div class="card">
-						<div class="card-body">
-							<h2 class="card-title">Room {room.id.slice(0, 4)}</h2>
-							<p class="card-subtitle text-body-secondary mb-3">
-								Created {new Date(room.created_at).toLocaleString()}
+			<a class="btn" href="/games/{room.id}">
+				<li class="list-group-item">
+					<div class="card shadow-sm">
+						<div class="card-body d-flex flex-column align-items-start">
+							<h2 class="card-title h3">Room {room.id.slice(0, 4)}</h2>
+							<p class="card-subtitle text-muted mb-3">
+								{new Date(room.created_at).toLocaleString()}
 							</p>
-							<p>{room.players?.length ?? 'No '} players</p>
+							<p class="card-text text-muted">{room.players?.length ?? 'No '} players</p>
 						</div>
 					</div>
 				</li>
