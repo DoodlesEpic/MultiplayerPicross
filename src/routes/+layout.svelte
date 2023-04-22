@@ -27,7 +27,7 @@
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/rooms">Multiplayer Picross</a>
 		{#if session}
-			<a class="navbar-brand" href="/account">{session?.user?.email}</a>
+			<a class="navbar-brand" href="/account">{session?.user?.email?.split('@')[0]}</a>
 		{/if}
 	</div>
 </nav>
