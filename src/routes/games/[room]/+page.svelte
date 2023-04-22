@@ -25,20 +25,23 @@
 		});
 
 	const handleClick = async (tile: boolean, position: number) => {
+		if (!room) throw new Error('Room not found');
 		room.current[position] = !tile;
+		room.solved = room?.current.every((val: any, index: number) => val === room?.solution[index]);
+
 		const { error } = await $page.data.supabase
 			.from('rooms')
-			.update({ current: room?.current })
+			.update({ current: room?.current, solved: room?.solved })
 			.eq('id', room?.id);
-		if (error) console.log(error);
-		console.log('Updated');
+		if (error) throw error;
 	};
 </script>
 
-<h1>Game</h1>
-<!-- <p>{JSON.stringify(room, null, 2)}</p> -->
-
 <div>
+	<h1>Game</h1>
+	<p>{room?.solved ? 'Solved' : 'Not Solved'}</p>
+	<!-- <p>{JSON.stringify(room, null, 2)}</p> -->
+
 	{#each room?.current as tile, position}
 		<button
 			on:click={() => handleClick(tile, position)}
