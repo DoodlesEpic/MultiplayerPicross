@@ -23,7 +23,7 @@
 	<title>User Management</title>
 </svelte:head>
 
-<nav class="navbar sticky-top shadow-sm">
+<nav class="navbar sticky-top shadow-sm bg-white">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/rooms">Multiplayer Picross</a>
 		{#if session}
