@@ -12,12 +12,12 @@
 <h1 class="text-center mb-3">Rooms</h1>
 
 {#if roomlistlength > 0}
-	<ul class="p-0">
+	<ul class="row p-0">
 		{#each roomlist as room}
-			<a class="btn" href="/games/{room.id}">
+			<a class="btn col-lg-3 col-md-4 col-12" href="/games/{room.id}">
 				<li class="list-group-item">
 					<div class="card shadow-sm">
-						<div class="card-body d-flex flex-column align-items-start">
+						<div class="card-body text-start">
 							<h2 class="card-title h3">Room {room.id.slice(0, 4)}</h2>
 							<p class="card-subtitle text-muted mb-3">
 								{new Date(room.created_at).toLocaleString()}
