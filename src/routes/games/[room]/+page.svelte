@@ -46,6 +46,7 @@
 		<button
 			on:click={() => handleClick(tile, position)}
 			class={`btn p-5 mb-1 ${tile ? 'btn-primary' : 'btn-danger'}`}
+			disabled={room?.solved}
 		/>
 
 		{#if (position + 1) % 5 === 0}
