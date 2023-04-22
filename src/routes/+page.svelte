@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="row flex-center flex">
-	<div class="col-6 form-widget">
+	<div class="col form-widget">
 		<Auth
 			supabaseClient={data.supabase}
 			view="magic_link"
