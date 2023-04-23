@@ -2,8 +2,10 @@
 	import { Auth } from '@supabase/auth-ui-svelte';
 	import { ThemeSupa } from '@supabase/auth-ui-shared';
 	import type { PageData } from './$types';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
+	$: if (data.session) goto('/rooms');
 </script>
 
 <svelte:head>
@@ -14,7 +16,7 @@
 	<div class="col form-widget">
 		<Auth
 			supabaseClient={data.supabase}
-			redirectTo={`${data.url}/logging-in?redirect=/`}
+			redirectTo={`${data.url}/logging-in?redirect=/rooms`}
 			providers={['google', 'discord']}
 			appearance={{ theme: ThemeSupa }}
 		/>
