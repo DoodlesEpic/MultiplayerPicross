@@ -52,6 +52,39 @@
 	// Convert 2D array row and column to 1D array index
 	const index = (row: number, column: number) => row * 5 + column;
 	let tile = (row: number, column: number): boolean => room?.current[index(row, column)];
+
+	$: contiguousForColumn = (column: number): number[] => {
+		const result: number[] = [];
+
+		let current_index = 0;
+		for (let i = 0; i < 5; i++) {
+			if (room?.solution[index(i, column)]) {
+				if (!result[current_index]) result.push(0);
+				result[current_index]++;
+			} else if (result[current_index] > 0) {
+				current_index++;
+			}
+		}
+
+		return result;
+	};
+
+	$: contiguousForRow = (row: number): number[] => {
+		const result: number[] = [];
+
+		let current_index = 0;
+		for (let i = 0; i < 5; i++) {
+			if (room?.solution[index(row, i)]) {
+				if (result.length === 0) result.push(0);
+				result[current_index]++;
+			} else if (result[current_index] > 0) {
+				current_index++;
+				result.push(0);
+			}
+		}
+
+		return result;
+	};
 </script>
 
 <div class="d-flex flex-column align-items-center">
@@ -60,8 +93,22 @@
 
 	<table>
 		<tbody>
+			<tr>
+				<td />
+				{#each Array(5) as _, column}
+					<td>
+						{#each contiguousForColumn(column) as count}
+							<span class="m-1 badge bg-secondary">{count}</span>
+							<br />
+						{/each}
+					</td>
+				{/each}
+			</tr>
 			{#each Array(5) as _, row}
 				<tr>
+					{#each contiguousForRow(row) as count}
+						<span class="m-1 badge bg-secondary">{count}</span>
+					{/each}
 					{#each room?.current.slice(row, row + 5) as _, column}
 						<td>
 							<button
