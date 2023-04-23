@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
@@ -10,9 +9,6 @@
 	let { session, rooms } = data;
 	let roomlist: any[] = rooms ?? [];
 	let roomlistlength = roomlist?.length ?? 0;
-
-	const fuzzyTime = (time: string) =>
-		dayjs(time).fromNow().charAt(0).toUpperCase() + dayjs(time).fromNow().slice(1);
 </script>
 
 <h1 class="text-center mb-3">Rooms</h1>
@@ -25,9 +21,13 @@
 					<div class="card shadow-sm">
 						<div class="card-body text-start">
 							<h2 class="card-title h3">Room {room.id.slice(0, 4)}</h2>
-							<p class="card-subtitle text-muted mb-3">
-								{fuzzyTime(room.created_at)}
+							<p class="card-subtitle {room.solved ? 'text-success' : 'text-danger'}">
+								{room.solved ? 'Solved' : 'Unsolved'}
 							</p>
+							<p class="card-subtitle text-muted mb-3">
+								Created {dayjs(room.created_at).fromNow()}
+							</p>
+
 							<p class="card-text text-muted">{room.players?.length ?? 'No '} players</p>
 						</div>
 					</div>
