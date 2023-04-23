@@ -14,8 +14,8 @@
 	<div class="col form-widget">
 		<Auth
 			supabaseClient={data.supabase}
-			view="magic_link"
 			redirectTo={`${data.url}/logging-in?redirect=/`}
+			providers={['google', 'discord']}
 			appearance={{ theme: ThemeSupa }}
 		/>
 	</div>
