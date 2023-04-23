@@ -54,7 +54,7 @@
 	let tile = (row: number, column: number): boolean => room?.current[index(row, column)];
 </script>
 
-<div>
+<div class="d-flex flex-column align-items-center">
 	<h1>Game</h1>
 	<p>{room?.solved ? 'Solved' : 'Not Solved'}</p>
 
