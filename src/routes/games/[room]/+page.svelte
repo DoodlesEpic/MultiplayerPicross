@@ -19,8 +19,14 @@
 		)
 		.subscribe(async (status: string) => {
 			if (status === 'SUBSCRIBED') {
-				const res = await $page.data.supabase.from('rooms').select().eq('id', room?.id).single();
-				console.log('Res: ', res);
+				const { data, error } = await $page.data.supabase
+					.from('rooms')
+					.select()
+					.eq('id', room?.id)
+					.single();
+
+				if (error) throw error;
+				room = data;
 			}
 		});
 
