@@ -55,7 +55,7 @@
 </script>
 
 <div class="d-flex flex-column align-items-center">
-	<h1>Game</h1>
+	<h1>Game {room?.id.slice(0, 4)}</h1>
 	<p>{room?.solved ? 'Solved' : 'Not Solved'}</p>
 
 	<table>
