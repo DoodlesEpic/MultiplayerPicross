@@ -17,7 +17,7 @@
 		<Auth
 			supabaseClient={data.supabase}
 			redirectTo={`${data.url}/logging-in?redirect=/rooms`}
-			providers={['google', 'discord']}
+			providers={['github', 'discord']}
 			appearance={{ theme: ThemeSupa }}
 		/>
 	</div>
