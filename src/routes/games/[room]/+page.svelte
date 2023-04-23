@@ -25,15 +25,22 @@
 		});
 
 	const handleClick = async (tile: boolean, position: number) => {
+		// Optimistically update the room state
 		if (!room) throw new Error('Room not found');
 		room.current[position] = !tile;
 		room.solved = room?.current.every((val: any, index: number) => val === room?.solution[index]);
 
+		// Syncronize the game state with the database
 		const { error } = await $page.data.supabase
 			.from('rooms')
 			.update({ current: room?.current, solved: room?.solved })
 			.eq('id', room?.id);
-		if (error) throw error;
+
+		// Rollback the change on error (i.e. network issue)
+		if (error) {
+			room.current[position] = tile;
+			room.solved = room?.current.every((val: any, index: number) => val === room?.solution[index]);
+		}
 	};
 </script>
 
