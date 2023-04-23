@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
@@ -39,6 +40,6 @@
 	<p>No rooms</p>
 {/if}
 
-<form method="post" action="?/create">
+<form method="post" action="?/create" use:enhance>
 	<button class="btn btn-primary">Create room</button>
 </form>
