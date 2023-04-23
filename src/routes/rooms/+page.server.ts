@@ -16,17 +16,21 @@ export const actions = {
 		const session = await getSession();
 		if (!session) throw redirect(303, '/');
 
-		const { data, error } = await supabase
+		// Grab a random row from the random figure table
+		const figure = await supabase.from('random_figure').select(`id, figure`).limit(1).single();
+		if (figure.error) return fail(500, { error: figure.error });
+
+		const room = await supabase
 			.from('rooms')
 			.insert({
 				creator: session.user.id,
 				current: Array(25).fill(0),
-				solution: [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1]
+				solution: figure.data.figure
 			})
 			.select()
 			.single();
-		if (error) return fail(500, { error });
+		if (room.error) return fail(500, { error: room.error });
 
-		throw redirect(303, `/games/${data.id}`);
+		throw redirect(303, `/games/${room.data.id}`);
 	}
 } satisfies Actions;
