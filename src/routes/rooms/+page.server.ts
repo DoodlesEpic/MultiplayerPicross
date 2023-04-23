@@ -21,7 +21,7 @@ export const actions = {
 			.insert({
 				creator: session.user.id,
 				current: Array(25).fill(0),
-				solution: Array(25).fill(0)
+				solution: [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1]
 			})
 			.select()
 			.single();
