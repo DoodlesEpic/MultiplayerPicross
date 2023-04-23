@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { goto } from '$app/navigation';
 	import type { ActionData, PageData } from './$types';
 
 	export let data: PageData;
@@ -12,12 +13,21 @@
 	let fullName: string | null = profile?.full_name;
 	let username: string | null = profile?.username;
 
-	function handleSubmit() {
+	const handleSubmit = () => {
 		loading = true;
 		return async () => {
 			loading = false;
 		};
-	}
+	};
+
+	const handleLogout = () => {
+		loading = true;
+		return async () => {
+			await data.supabase.auth.signOut();
+			loading = false;
+			goto('/');
+		};
+	};
 </script>
 
 <form
@@ -64,6 +74,6 @@
 	</div>
 </form>
 
-<form method="post" action="?/signout" use:enhance={handleSubmit}>
+<form method="post" action="?/signout" use:enhance={handleLogout}>
 	<button class="btn btn-danger" disabled={loading}>Sign Out</button>
 </form>
