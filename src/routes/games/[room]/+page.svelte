@@ -48,22 +48,33 @@
 			room.solved = room?.current.every((val: any, index: number) => val === room?.solution[index]);
 		}
 	};
+
+	// Convert 2D array row and column to 1D array index
+	const index = (row: number, column: number) => row * 5 + column;
+	let tile = (row: number, column: number): boolean => room?.current[index(row, column)];
 </script>
 
 <div>
 	<h1>Game</h1>
 	<p>{room?.solved ? 'Solved' : 'Not Solved'}</p>
-	<!-- <p>{JSON.stringify(room, null, 2)}</p> -->
 
-	{#each room?.current as tile, position}
-		<button
-			on:click={() => handleClick(tile, position)}
-			class={`btn p-5 mb-1 ${tile ? 'btn-primary' : 'btn-danger'}`}
-			disabled={room?.solved}
-		/>
-
-		{#if (position + 1) % 5 === 0}
-			<br />
-		{/if}
-	{/each}
+	<table>
+		<tbody>
+			{#each Array(5) as _, row}
+				<tr>
+					{#each room?.current.slice(row, row + 5) as _, column}
+						<td>
+							<button
+								on:click={() => handleClick(tile(row, column), index(row, column))}
+								class={`btn p-4 p-sm-5 ${
+									room?.current[index(row, column)] ? 'btn-primary' : 'btn-danger'
+								}`}
+								disabled={room?.solved}
+							/>
+						</td>
+					{/each}
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 </div>
