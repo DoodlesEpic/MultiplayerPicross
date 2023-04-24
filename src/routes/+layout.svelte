@@ -2,11 +2,11 @@
 	import '../app.scss';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
-
-	$: ({ supabase, session } = data);
+	$: ({ supabase, session, url } = data);
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
@@ -31,6 +31,9 @@
 		{/if}
 	</div>
 </nav>
-<div class="container mt-5">
-	<slot />
-</div>
+
+{#key url.pathname}
+	<div class="container mt-5" in:fade={{ duration: 50, delay: 100 }} out:fade={{ duration: 50 }}>
+		<slot />
+	</div>
+{/key}
