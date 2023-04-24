@@ -53,38 +53,18 @@
 	const index = (row: number, column: number) => row * 5 + column;
 	let tile = (row: number, column: number): boolean => room?.current[index(row, column)];
 
-	$: contiguousForColumn = (column: number): number[] => {
-		const result: number[] = [];
+	$: contiguousTiles = (position: number, type: 'column' | 'row') => {
+		let result: number[] = [0];
 
 		let current_index = 0;
 		for (let i = 0; i < 5; i++) {
-			if (room?.solution[index(i, column)]) {
-				if (!result[current_index]) result.push(0);
-				result[current_index]++;
-			} else if (result[current_index] > 0) {
-				current_index++;
-			}
+			const isRow = type === 'row';
+			const isChecked = room?.solution[isRow ? index(position, i) : index(i, position)];
+
+			if (isChecked) result[current_index] = (result[current_index] || 0) + 1;
+			else if (result[current_index] > 0) current_index++;
 		}
 
-		if (result.length === 0) result.push(0);
-		return result;
-	};
-
-	$: contiguousForRow = (row: number): number[] => {
-		const result: number[] = [];
-
-		let current_index = 0;
-		for (let i = 0; i < 5; i++) {
-			if (room?.solution[index(row, i)]) {
-				if (result.length === 0) result.push(0);
-				result[current_index]++;
-			} else if (result[current_index] > 0) {
-				current_index++;
-				result.push(0);
-			}
-		}
-
-		if (result.length === 0) result.push(0);
 		return result;
 	};
 </script>
@@ -99,7 +79,7 @@
 				<td />
 				{#each Array(5) as _, column}
 					<td>
-						{#each contiguousForColumn(column) as count}
+						{#each contiguousTiles(column, 'column') as count}
 							<span class="m-1 badge bg-secondary">{count}</span>
 							<br />
 						{/each}
@@ -108,7 +88,7 @@
 			</tr>
 			{#each Array(5) as _, row}
 				<tr>
-					{#each contiguousForRow(row) as count}
+					{#each contiguousTiles(row, 'row') as count}
 						<span class="m-1 badge bg-secondary">{count}</span>
 					{/each}
 					{#each room?.current.slice(row, row + 5) as _, column}
