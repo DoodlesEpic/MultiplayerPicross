@@ -51,7 +51,7 @@
 
 	// Convert 2D array row and column to 1D array index
 	const index = (row: number, column: number) => row * 5 + column;
-	let tile = (row: number, column: number): boolean => room?.current[index(row, column)];
+	$: tile = (row: number, column: number): boolean => room?.current[index(row, column)];
 
 	$: contiguousTiles = (position: number, type: 'column' | 'row') => {
 		let result: number[] = [0];
@@ -95,9 +95,7 @@
 						<td>
 							<button
 								on:click={() => handleClick(tile(row, column), index(row, column))}
-								class={`btn p-4 p-sm-5 ${
-									room?.current[index(row, column)] ? 'btn-primary' : 'btn-danger'
-								}`}
+								class={`btn p-4 p-sm-5 ${tile(row, column) ? 'btn-primary' : 'btn-danger'}`}
 								disabled={room?.solved}
 							/>
 						</td>
