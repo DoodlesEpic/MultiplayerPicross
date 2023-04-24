@@ -10,7 +10,7 @@
 
 		// Check if user has been set in session store then redirect
 		if (browser && data.session) {
-			goto(redirectTo ?? '/account');
+			goto(redirectTo ?? '/rooms');
 		}
 	}
 </script>
