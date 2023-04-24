@@ -20,7 +20,7 @@
 </script>
 
 <svelte:head>
-	<title>User Management</title>
+	<title>Multiplayer Picross</title>
 </svelte:head>
 
 <nav class="navbar sticky-top shadow-sm bg-white">
