@@ -3,6 +3,7 @@
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { cubicInOut } from 'svelte/easing';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
@@ -33,7 +34,11 @@
 </nav>
 
 {#key url.pathname}
-	<div class="container mt-5" in:fade={{ duration: 50, delay: 100 }} out:fade={{ duration: 50 }}>
+	<div
+		class="container mt-5"
+		in:fade={{ easing: cubicInOut, duration: 50, delay: 100 }}
+		out:fade={{ easing: cubicInOut, duration: 50 }}
+	>
 		<slot />
 	</div>
 {/key}
