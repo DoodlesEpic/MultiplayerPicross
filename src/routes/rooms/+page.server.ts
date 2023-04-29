@@ -25,7 +25,7 @@ export const actions = {
 			.insert({
 				creator: session.user.id,
 				current: Array(25).fill(0),
-				solution: figure.data.figure
+				figure: figure.data.id
 			})
 			.select()
 			.single();

@@ -15,26 +15,25 @@
 				table: 'rooms',
 				filter: `id=eq.${room?.id}`
 			},
-			(payload: { new: any }) => (room = payload.new as any)
-		)
-		.subscribe(async (status: string) => {
-			if (status === 'SUBSCRIBED') {
-				const { data, error } = await $page.data.supabase
-					.from('rooms')
-					.select()
-					.eq('id', room?.id)
-					.single();
-
-				if (error) throw error;
-				room = data;
+			(payload: { new: { current: boolean[]; solved: boolean; players: any[] } }) => {
+				// Don't update everything in our local object
+				// Since the JOIN on the figure/creator won't be performed in this listener
+				if (room) {
+					room.current = payload.new.current;
+					room.solved = payload.new.solved;
+					room.players = payload.new.players;
+				}
 			}
-		});
+		)
+		.subscribe();
 
 	const handleClick = async (tile: boolean, position: number) => {
 		// Optimistically update the room state
 		if (!room) throw new Error('Room not found');
 		room.current[position] = !tile;
-		room.solved = room?.current.every((val: any, index: number) => val === room?.solution[index]);
+		room.solved = room?.current.every(
+			(val: boolean, index: number) => val === room?.figure?.figure[index]
+		);
 
 		// Syncronize the game state with the database
 		const { error } = await $page.data.supabase
@@ -45,13 +44,14 @@
 		// Rollback the change on error (i.e. network issue)
 		if (error) {
 			room.current[position] = tile;
-			room.solved = room?.current.every((val: any, index: number) => val === room?.solution[index]);
+			room.solved = room?.current.every((val: any, index: number) => val === room?.current[index]);
 		}
 	};
 
 	// Convert 2D array row and column to 1D array index
-	const index = (row: number, column: number) => row * 5 + column;
-	$: tile = (row: number, column: number): boolean => room?.current[index(row, column)];
+	$: index = (row: number, column: number, width: number) => row * width + column;
+	$: tile = (row: number, column: number, width: number): boolean =>
+		room?.current[index(row, column, width)];
 
 	$: contiguousTiles = (position: number, type: 'column' | 'row') => {
 		let result: number[] = [0];
@@ -59,7 +59,10 @@
 		let current_index = 0;
 		for (let i = 0; i < 5; i++) {
 			const isRow = type === 'row';
-			const isChecked = room?.solution[isRow ? index(position, i) : index(i, position)];
+			const isChecked =
+				room?.figure?.figure[
+					isRow ? index(position, i, room?.figure?.width) : index(i, position, room?.figure?.width)
+				];
 
 			if (isChecked) result[current_index] = (result[current_index] || 0) + 1;
 			else if (result[current_index] > 0) current_index++;
@@ -77,7 +80,7 @@
 		<tbody>
 			<tr>
 				<td />
-				{#each Array(5) as _, column}
+				{#each Array(room?.figure?.width) as _, column}
 					<td>
 						{#each contiguousTiles(column, 'column') as count}
 							<span class="m-1 badge bg-secondary">{count}</span>
@@ -86,7 +89,7 @@
 					</td>
 				{/each}
 			</tr>
-			{#each Array(5) as _, row}
+			{#each Array(room?.figure?.figure?.length / room?.figure?.width) as _, row}
 				<tr>
 					{#each contiguousTiles(row, 'row') as count}
 						<span class="m-1 badge bg-secondary">{count}</span>
@@ -94,8 +97,14 @@
 					{#each room?.current.slice(row, row + 5) as _, column}
 						<td>
 							<button
-								on:click={() => handleClick(tile(row, column), index(row, column))}
-								class={`btn p-4 p-sm-5 ${tile(row, column) ? 'btn-primary' : 'btn-danger'}`}
+								on:click={() =>
+									handleClick(
+										tile(row, column, room?.figure?.width),
+										index(row, column, room?.figure?.width)
+									)}
+								class={`btn p-4 p-sm-5 ${
+									tile(row, column, room?.figure?.width) ? 'btn-primary' : 'btn-danger'
+								}`}
 								disabled={room?.solved}
 							/>
 						</td>
