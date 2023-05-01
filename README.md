@@ -19,3 +19,7 @@ To create a production version of the webapp:
 ```bash
 yarn build
 ```
+
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0. Read the [LICENSE](LICENSE) file for more information.
