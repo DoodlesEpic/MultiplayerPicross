@@ -2,7 +2,7 @@
 
 Picross-style nonogram puzzles, but multiplayer.
 
-![Screenshot from 2023-04-26 19-30-53](https://user-images.githubusercontent.com/37254797/234717092-0a9faa7d-0a56-46ae-a09b-36d4c12bb848.png)
+![Screenshot from 2023-04-30 23-30-25](https://user-images.githubusercontent.com/37254797/235393264-9bae969f-7a8e-4e25-9f23-9a526852bf92.png)
 
 ## Developing
 
