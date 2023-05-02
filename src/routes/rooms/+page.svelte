@@ -43,21 +43,15 @@
 							<p class="card-subtitle {room.solved ? 'text-success' : 'text-danger'}">
 								{room.solved ? 'Solved' : 'Unsolved'}
 							</p>
-							<p class="card-subtitle text-muted mb-3">
+							<p class="card-subtitle text-muted">
 								Created {dayjs(room.created_at).fromNow()}
 							</p>
-
-							<ul class="card-text text-muted">
-								{#each Object.keys(players) as player}
-									{#if players[player].slice(-1)[0].room === room.id}
-										{#await supabase.from('profiles').select().eq('id', player).single()}
-											<li class="list-group-item">Loading username...</li>
-										{:then result}
-											<li class="list-group-item">{result.data?.username}</li>
-										{/await}
-									{/if}
-								{/each}
-							</ul>
+							<p class="card-text text-muted">
+								{Object.keys(players).reduce((acc, key) => {
+									if (players[key].slice(-1)[0].room === room.id) acc++;
+									return acc;
+								}, 0) || 'No one'} playing
+							</p>
 						</div>
 					</div>
 				</li>
