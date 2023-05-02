@@ -5,8 +5,8 @@
 	export let data: PageData;
 	let { session, room } = data;
 
-	$page.data.supabase
-		.channel('db-messages')
+	const dbMessages = $page.data.supabase.channel('db-messages');
+	dbMessages
 		.on(
 			'postgres_changes',
 			{
@@ -26,6 +26,28 @@
 			}
 		)
 		.subscribe();
+
+	let players: any = {};
+	const playersChannel = $page.data.supabase.channel(`online-users-${room?.id}`, {
+		config: {
+			presence: {
+				key: session?.user?.id
+			}
+		}
+	});
+	playersChannel
+		.on('presence', { event: 'sync' }, async () => {
+			players = playersChannel.presenceState();
+			await $page.data.supabase
+				.from('rooms')
+				.update({ players: Object.keys(players) })
+				.eq('id', room?.id);
+		})
+		.subscribe(async (status: string) => {
+			if (status === 'SUBSCRIBED') {
+				await playersChannel.track();
+			}
+		});
 
 	const handleClick = async (tile: boolean, position: number) => {
 		// Optimistically update the room state
@@ -76,6 +98,18 @@
 	<h1>Game {room?.id.slice(0, 4)}</h1>
 	<p>{room?.solved ? 'Solved' : 'Not Solved'}</p>
 
+	<h2 class="h4 mt-2">Players</h2>
+	<ul class="p-0">
+		{#each Object.keys(players) as player}
+			{#await $page.data.supabase.from('profiles').select().eq('id', player).single()}
+				<li class="list-group-item">Loading username...</li>
+			{:then result}
+				<li class="list-group-item">{result.data.username}</li>
+			{/await}
+		{/each}
+	</ul>
+
+	<h2 class="h4 mt-2">Nonogram</h2>
 	<table>
 		<tbody>
 			<tr>
