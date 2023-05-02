@@ -7,9 +7,27 @@
 
 	export let data: PageData;
 
-	let { session, rooms } = data;
+	let { session, rooms, supabase } = data;
 	let roomlist: any[] = rooms ?? [];
 	let roomlistlength = roomlist?.length ?? 0;
+
+	let players: any = {};
+	const playersChannel = supabase.channel(`online-users}`, {
+		config: {
+			presence: {
+				key: session?.user?.id
+			}
+		}
+	});
+	playersChannel
+		.on('presence', { event: 'sync' }, async () => {
+			players = playersChannel.presenceState();
+		})
+		.subscribe(async (status: string) => {
+			if (status === 'SUBSCRIBED') {
+				await playersChannel.track({ room: null });
+			}
+		});
 </script>
 
 <h1 class="text-center mb-3">Rooms</h1>
@@ -29,7 +47,17 @@
 								Created {dayjs(room.created_at).fromNow()}
 							</p>
 
-							<p class="card-text text-muted">{room.players?.length ?? 'No '} players</p>
+							<ul class="card-text text-muted">
+								{#each Object.keys(players) as player}
+									{#if players[player].slice(-1)[0].room === room.id}
+										{#await supabase.from('profiles').select().eq('id', player).single()}
+											<li class="list-group-item">Loading username...</li>
+										{:then result}
+											<li class="list-group-item">{result.data?.username}</li>
+										{/await}
+									{/if}
+								{/each}
+							</ul>
 						</div>
 					</div>
 				</li>

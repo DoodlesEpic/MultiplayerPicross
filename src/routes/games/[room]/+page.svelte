@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import type { PageData } from './$types';
-
 	export let data: PageData;
-	let { session, room } = data;
+	let { session, room, supabase } = data;
 
-	const dbMessages = $page.data.supabase.channel('db-messages');
+	const dbMessages = supabase.channel('db-messages');
 	dbMessages
 		.on(
 			'postgres_changes',
@@ -28,7 +26,7 @@
 		.subscribe();
 
 	let players: any = {};
-	const playersChannel = $page.data.supabase.channel(`online-users-${room?.id}`, {
+	const playersChannel = supabase.channel(`online-users}`, {
 		config: {
 			presence: {
 				key: session?.user?.id
@@ -38,14 +36,14 @@
 	playersChannel
 		.on('presence', { event: 'sync' }, async () => {
 			players = playersChannel.presenceState();
-			await $page.data.supabase
+			await supabase
 				.from('rooms')
 				.update({ players: Object.keys(players) })
 				.eq('id', room?.id);
 		})
 		.subscribe(async (status: string) => {
 			if (status === 'SUBSCRIBED') {
-				await playersChannel.track();
+				await playersChannel.track({ room: room?.id });
 			}
 		});
 
@@ -58,7 +56,7 @@
 		);
 
 		// Syncronize the game state with the database
-		const { error } = await $page.data.supabase
+		const { error } = await supabase
 			.from('rooms')
 			.update({ current: room?.current, solved: room?.solved })
 			.eq('id', room?.id);
@@ -101,11 +99,13 @@
 	<h2 class="h4 mt-2">Players</h2>
 	<ul class="p-0">
 		{#each Object.keys(players) as player}
-			{#await $page.data.supabase.from('profiles').select().eq('id', player).single()}
-				<li class="list-group-item">Loading username...</li>
-			{:then result}
-				<li class="list-group-item">{result.data.username}</li>
-			{/await}
+			{#if players[player].slice(-1)[0].room === room?.id}
+				{#await supabase.from('profiles').select().eq('id', player).single()}
+					<li class="list-group-item">Loading username...</li>
+				{:then result}
+					<li class="list-group-item">{result.data?.username}</li>
+				{/await}
+			{/if}
 		{/each}
 	</ul>
 
