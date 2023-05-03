@@ -3,8 +3,8 @@
 	export let data: PageData;
 	let { session, room, supabase } = data;
 
-	const dbMessages = supabase.channel('db-messages');
-	dbMessages
+	const dbMessages = supabase
+		.channel('db-messages')
 		.on(
 			'postgres_changes',
 			{
@@ -25,14 +25,14 @@
 		.subscribe();
 
 	let players: any = {};
-	const playersChannel = supabase.channel(`online-users`, {
-		config: {
-			presence: {
-				key: session?.user?.id
+	const playersChannel = supabase
+		.channel(`online-users`, {
+			config: {
+				presence: {
+					key: session?.user?.id
+				}
 			}
-		}
-	});
-	playersChannel
+		})
 		.on('presence', { event: 'sync' }, async () => {
 			players = playersChannel.presenceState();
 		})
