@@ -72,7 +72,7 @@
 		let result: number[] = [0];
 
 		let current_index = 0;
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < room?.figure?.width; i++) {
 			const isRow = type === 'row';
 			const isChecked =
 				room?.figure?.figure[
