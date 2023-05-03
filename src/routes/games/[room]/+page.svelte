@@ -19,7 +19,6 @@
 				if (room) {
 					room.current = payload.new.current;
 					room.solved = payload.new.solved;
-					room.players = payload.new.players;
 				}
 			}
 		)
@@ -36,10 +35,6 @@
 	playersChannel
 		.on('presence', { event: 'sync' }, async () => {
 			players = playersChannel.presenceState();
-			await supabase
-				.from('rooms')
-				.update({ players: Object.keys(players) })
-				.eq('id', room?.id);
 		})
 		.subscribe(async (status: string) => {
 			if (status === 'SUBSCRIBED') {
