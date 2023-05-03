@@ -25,7 +25,7 @@
 		.subscribe();
 
 	let players: any = {};
-	const playersChannel = supabase.channel(`online-users}`, {
+	const playersChannel = supabase.channel(`online-users`, {
 		config: {
 			presence: {
 				key: session?.user?.id

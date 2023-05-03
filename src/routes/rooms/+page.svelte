@@ -12,7 +12,7 @@
 	let roomlistlength = roomlist?.length ?? 0;
 
 	let players: any = {};
-	const playersChannel = supabase.channel(`online-users}`, {
+	const playersChannel = supabase.channel(`online-users`, {
 		config: {
 			presence: {
 				key: session?.user?.id
