@@ -123,7 +123,7 @@
 					{#each contiguousTiles(row, 'row') as count}
 						<span class="m-1 badge bg-secondary">{count}</span>
 					{/each}
-					{#each room?.current.slice(row, row + 5) as _, column}
+					{#each room?.current.slice(row, row + room?.figure?.width) as _, column}
 						<td>
 							<button
 								on:click={() =>
