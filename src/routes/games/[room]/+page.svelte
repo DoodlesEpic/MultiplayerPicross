@@ -105,7 +105,7 @@
 	</ul>
 
 	<h2 class="h4 mt-2">Nonogram</h2>
-	<table>
+	<table class="mb-5">
 		<tbody>
 			<tr>
 				<td />
@@ -131,7 +131,7 @@
 										tile(row, column, room?.figure?.width),
 										index(row, column, room?.figure?.width)
 									)}
-								class={`btn p-4 p-sm-5 ${
+								class={`btn p-3 p-sm-4 p-xl-5 ${
 									tile(row, column, room?.figure?.width) ? 'btn-primary' : 'btn-danger'
 								}`}
 								disabled={room?.solved}
