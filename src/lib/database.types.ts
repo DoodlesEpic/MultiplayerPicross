@@ -59,7 +59,6 @@ export interface Database {
           current: boolean[]
           figure: string
           id: string
-          players: string[] | null
           solved: boolean
         }
         Insert: {
@@ -68,7 +67,6 @@ export interface Database {
           current: boolean[]
           figure: string
           id?: string
-          players?: string[] | null
           solved?: boolean
         }
         Update: {
@@ -77,7 +75,6 @@ export interface Database {
           current?: boolean[]
           figure?: string
           id?: string
-          players?: string[] | null
           solved?: boolean
         }
       }
