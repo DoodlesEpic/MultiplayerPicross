@@ -12,13 +12,11 @@
 	<title>User Management</title>
 </svelte:head>
 
-<div class="row flex-center flex">
-	<div class="col form-widget">
-		<Auth
-			supabaseClient={data.supabase}
-			redirectTo={`${data.url}/logging-in?redirect=/rooms`}
-			providers={['github', 'discord']}
-			appearance={{ theme: ThemeSupa }}
-		/>
-	</div>
+<div class="m-auto col col-sm-10 col-md-8 col-lg-6 form-widget">
+	<Auth
+		supabaseClient={data.supabase}
+		redirectTo={`${data.url}/logging-in?redirect=/rooms`}
+		providers={['github', 'discord']}
+		appearance={{ theme: ThemeSupa }}
+	/>
 </div>
