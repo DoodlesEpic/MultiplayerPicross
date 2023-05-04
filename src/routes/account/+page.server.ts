@@ -1,21 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
-
-export const load = (async ({ locals: { supabase, getSession } }) => {
-	const session = await getSession();
-
-	if (!session) {
-		throw redirect(303, '/');
-	}
-
-	const { data: profile } = await supabase
-		.from('profiles')
-		.select(`username, full_name, avatar_url`)
-		.eq('id', session.user.id)
-		.single();
-
-	return { session, profile };
-}) satisfies PageServerLoad;
+import type { Actions } from './$types';
 
 export const actions = {
 	update: async ({ request, locals: { supabase, getSession } }) => {
