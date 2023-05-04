@@ -30,7 +30,7 @@
 </script>
 
 <div class="col-12">
-	<h1 class="text-center mb-5">Rooms</h1>
+	<h1 class="text-center my-5">Rooms</h1>
 
 	{#if roomlistlength > 0}
 		<ul class="row p-0">

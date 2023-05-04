@@ -39,7 +39,7 @@
 
 {#key url.pathname}
 	<div
-		class="container d-flex flex-column align-items-center justify-content-center flex-fill my-5"
+		class="container d-flex flex-column align-items-center justify-content-center flex-fill mb-5"
 		in:fade={{ easing: cubicInOut, duration: 50, delay: 100 }}
 		out:fade={{ easing: cubicInOut, duration: 50 }}
 	>
