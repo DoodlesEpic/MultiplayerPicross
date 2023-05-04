@@ -112,7 +112,7 @@
 				{#each Array(room?.figure?.width) as _, column}
 					<td>
 						{#each contiguousTiles(column, 'column') as count}
-							<span class="m-1 badge bg-secondary">{count}</span>
+							<span class="my-1 badge bg-secondary">{count}</span>
 							<br />
 						{/each}
 					</td>
@@ -121,7 +121,7 @@
 			{#each Array(room?.figure?.figure?.length / room?.figure?.width) as _, row}
 				<tr>
 					{#each contiguousTiles(row, 'row') as count}
-						<span class="m-1 badge bg-secondary">{count}</span>
+						<span class="mx-1 badge bg-secondary">{count}</span>
 					{/each}
 					{#each room?.current.slice(row, row + room?.figure?.width) as _, column}
 						<td>
@@ -131,7 +131,7 @@
 										tile(row, column, room?.figure?.width),
 										index(row, column, room?.figure?.width)
 									)}
-								class={`btn p-3 p-sm-4 p-xl-5 ${
+								class={`btn p-3 p-md-4 p-xl-5 ${
 									tile(row, column, room?.figure?.width) ? 'btn-primary' : 'btn-danger'
 								}`}
 								disabled={room?.solved}
