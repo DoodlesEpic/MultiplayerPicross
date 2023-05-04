@@ -105,7 +105,7 @@
 	</ul>
 
 	<h2 class="h4 mt-2">Nonogram</h2>
-	<table class="mb-5">
+	<table>
 		<tbody>
 			<tr>
 				<td />

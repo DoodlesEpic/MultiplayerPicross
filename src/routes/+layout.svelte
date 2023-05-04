@@ -39,7 +39,7 @@
 
 {#key url.pathname}
 	<div
-		class="container mt-5"
+		class="container my-5"
 		in:fade={{ easing: cubicInOut, duration: 50, delay: 100 }}
 		out:fade={{ easing: cubicInOut, duration: 50 }}
 	>
