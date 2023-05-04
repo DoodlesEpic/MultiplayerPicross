@@ -3,10 +3,11 @@
 </script>
 
 <div class="m-auto col col-sm-10 col-md-8 col-lg-6">
-	<div class="text-center">
+	<div class="text-center mb-5">
 		<h1>Create room</h1>
 		<p>Choose the nonogram difficulty</p>
 	</div>
+
 	<form method="post" action="?/create" use:enhance>
 		<label for="nonogram-size" class="form-label">Nonogram size</label>
 		<select name="nonogram-size" id="nonogram-size" class="form-select" aria-label="Nonogram size">
