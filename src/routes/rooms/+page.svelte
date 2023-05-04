@@ -29,7 +29,7 @@
 		});
 </script>
 
-<div class="col mt-5">
+<div class="col-12">
 	<h1 class="text-center mb-5">Rooms</h1>
 
 	{#if roomlistlength > 0}

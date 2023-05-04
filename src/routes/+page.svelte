@@ -12,7 +12,7 @@
 	<title>User Management</title>
 </svelte:head>
 
-<div class="m-auto col col-sm-10 col-md-8 col-lg-6 form-widget">
+<div class="col-12 col-sm-10 col-md-8 col-lg-6">
 	<Auth
 		supabaseClient={data.supabase}
 		redirectTo={`${data.url}/logging-in?redirect=/rooms`}
