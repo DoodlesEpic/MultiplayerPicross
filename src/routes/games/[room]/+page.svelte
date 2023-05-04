@@ -87,7 +87,7 @@
 	};
 </script>
 
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center m-auto">
 	<h1>Game {room?.id.slice(0, 4)}</h1>
 	<p>{room?.solved ? 'Solved' : 'Not Solved'}</p>
 
