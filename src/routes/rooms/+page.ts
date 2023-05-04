@@ -1,8 +1,8 @@
 import { redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from '../$types';
+import type { PageLoad } from './$types';
 
-export const load = (async ({ locals: { supabase, getSession } }) => {
-	const session = await getSession();
+export const load = (async ({ parent }) => {
+	const { session, supabase } = await parent();
 	if (!session) throw redirect(303, '/');
 
 	const { data: rooms, error } = await supabase
@@ -12,5 +12,5 @@ export const load = (async ({ locals: { supabase, getSession } }) => {
 		.order('created_at', { ascending: false });
 	if (error) throw error;
 
-	return { session, rooms };
-}) satisfies PageServerLoad;
+	return { rooms };
+}) satisfies PageLoad;
