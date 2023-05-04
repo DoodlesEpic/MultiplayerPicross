@@ -16,7 +16,8 @@
 				class="form-select"
 				aria-label="Nonogram size"
 			>
-				<option value="5x5" selected>5x5</option>
+				<option value="any" selected>Any</option>
+				<option value="5x5">5x5</option>
 				<option value="10x10">10x10</option>
 			</select>
 

@@ -7,18 +7,22 @@ export const actions = {
 		if (!session) throw redirect(303, '/');
 
 		const data = await request.formData();
-		const size: '5x5' | '10x10' = data.get('nonogram-size') as '5x5' | '10x10';
+		const size = data.get('nonogram-size') as '5x5' | '10x10' | 'any';
 		const width = size === '5x5' ? 5 : 10;
 
 		// Grab a random row from the random figure table
-		const figure = await supabase
-			.from('random_figure')
-			.select(`id, figure`)
-			.eq('width', width)
-			.limit(1)
-			.single();
+		const figure =
+			size === 'any'
+				? await supabase.from('random_figure').select(`id, figure`).limit(1).single()
+				: await supabase
+						.from('random_figure')
+						.select(`id, figure`)
+						.eq('width', width)
+						.limit(1)
+						.single();
 		if (figure.error) return fail(500, { error: figure.error });
 
+		// Create a new room with the figure and redirect to game page
 		const room = await supabase
 			.from('rooms')
 			.insert({
