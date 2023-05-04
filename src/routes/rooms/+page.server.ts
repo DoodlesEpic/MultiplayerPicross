@@ -22,7 +22,7 @@ export const actions = {
 			.from('rooms')
 			.insert({
 				creator: session.user.id,
-				current: Array(25).fill(0),
+				current: Array(figure.data.figure.length).fill(0),
 				figure: figure.data.id
 			})
 			.select()
