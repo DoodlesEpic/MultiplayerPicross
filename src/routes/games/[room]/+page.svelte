@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { string } from '$env/static/private';
 	import type { PageData } from './$types';
 	export let data: PageData;
 	let { session, room, supabase } = data;
@@ -25,7 +26,7 @@
 		)
 		.subscribe();
 
-	let players = {};
+	let players: { [key: string]: { id: string; room: string }[] } = {};
 	const playersChannel = supabase
 		.channel(`online-users`, {
 			config: {
@@ -92,10 +93,14 @@
 	<ul class="p-0">
 		{#await supabase.from('profiles').select().in('id', Object.keys(players))}
 			<li class="list-group-item">Loading players...</li>
-		{:then { data: players }}
-			{#if players}
-				{#each players as player}
-					<li class="list-group-item">{player.username}</li>
+		{:then result}
+			{#if result.data}
+				{#each result.data as player}
+					{#if players[player.id].slice(-1)[0].room === room.id}
+						<li class="list-group-item">
+							{player.username}
+						</li>
+					{/if}
 				{/each}
 			{:else}
 				<li class="list-group-item">No players found</li>
