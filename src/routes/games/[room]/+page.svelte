@@ -107,41 +107,43 @@
 	</ul>
 
 	<h2 class="h4 mt-2">Nonogram</h2>
-	<table>
-		<tbody>
-			<tr>
-				<td />
-				{#each Array(room?.figure?.width) as _, column}
-					<td>
-						{#each contiguousTiles(column, 'column') as count}
-							<span class="my-1 badge bg-secondary">{count}</span>
-							<br />
-						{/each}
-					</td>
-				{/each}
-			</tr>
-			{#each Array(room?.figure?.figure?.length / room?.figure?.width) as _, row}
+	{#if room?.figure}
+		<table>
+			<tbody>
 				<tr>
-					{#each contiguousTiles(row, 'row') as count}
-						<span class="mx-1 badge bg-secondary">{count}</span>
-					{/each}
-					{#each room?.current.slice(row, row + room?.figure?.width) as _, column}
+					<td />
+					{#each Array(room.figure.width) as _, column}
 						<td>
-							<button
-								on:click={() =>
-									handleClick(
-										tile(row, column, room?.figure?.width),
-										index(row, column, room?.figure?.width)
-									)}
-								class={`btn p-3 p-md-4 p-xl-5 ${
-									tile(row, column, room?.figure?.width) ? 'btn-primary' : 'btn-danger'
-								}`}
-								disabled={room?.solved}
-							/>
+							{#each contiguousTiles(column, 'column') as count}
+								<span class="my-1 badge bg-secondary">{count}</span>
+								<br />
+							{/each}
 						</td>
 					{/each}
 				</tr>
-			{/each}
-		</tbody>
-	</table>
+				{#each Array(room.figure.figure?.length / room.figure.width) as _, row}
+					<tr>
+						{#each contiguousTiles(row, 'row') as count}
+							<span class="mx-1 badge bg-secondary">{count}</span>
+						{/each}
+						{#each room.current.slice(row, row + room.figure.width) as _, column}
+							<td>
+								<button
+									on:click={() =>
+										handleClick(
+											tile(row, column, room?.figure?.width),
+											index(row, column, room?.figure?.width)
+										)}
+									class={`btn p-3 p-md-4 p-xl-5 ${
+										tile(row, column, room?.figure?.width) ? 'btn-primary' : 'btn-danger'
+									}`}
+									disabled={room?.solved}
+								/>
+							</td>
+						{/each}
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	{/if}
 </div>
