@@ -6,7 +6,7 @@
 
 	export let data: PageData;
 	let { session, rooms, supabase } = data;
-	let players = {};
+	let players: { [x: string]: { presence_ref: string; room: string | null }[] };
 
 	const playersChannel = supabase
 		.channel(`online-users`, {
@@ -20,9 +20,7 @@
 			players = playersChannel.presenceState();
 		})
 		.subscribe(async (status: string) => {
-			if (status === 'SUBSCRIBED') {
-				await playersChannel.track({ room: null });
-			}
+			if (status === 'SUBSCRIBED') await playersChannel.track({ room: null });
 		});
 </script>
 
@@ -43,12 +41,14 @@
 								<p class="card-subtitle text-muted">
 									Created {dayjs(room.created_at).fromNow()}
 								</p>
-								<p class="card-text text-muted">
-									{Object.keys(players).reduce((acc, key) => {
-										if (players[key].slice(-1)[0].room === room.id) acc++;
-										return acc;
-									}, 0) || 'No one'} playing
-								</p>
+								{#if players}
+									<p class="card-text text-muted">
+										{Object.keys(players).reduce((acc, key) => {
+											if (players[key].slice(-1)[0].room === room.id) acc++;
+											return acc;
+										}, 0) || 'No one'} playing
+									</p>
+								{/if}
 							</div>
 						</div>
 					</li>
