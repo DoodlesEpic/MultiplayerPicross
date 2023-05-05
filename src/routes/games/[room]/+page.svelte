@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	export let data: PageData;
 	let { session, room, supabase } = data;
+	let figure = room.figure as { figure: boolean[]; width: number };
 
 	supabase
 		.channel('db-messages')
@@ -11,7 +12,7 @@
 				event: 'UPDATE',
 				schema: 'public',
 				table: 'rooms',
-				filter: `id=eq.${room?.id}`
+				filter: `id=eq.${room.id}`
 			},
 			(payload) => {
 				// Don't update everything in our local object
@@ -29,7 +30,7 @@
 		.channel(`online-users`, {
 			config: {
 				presence: {
-					key: session?.user?.id
+					key: session?.user.id
 				}
 			}
 		})
@@ -38,7 +39,7 @@
 		})
 		.subscribe(async (status: string) => {
 			if (status === 'SUBSCRIBED') {
-				await playersChannel.track({ room: room?.id });
+				await playersChannel.track({ room: room.id });
 			}
 		});
 
@@ -46,38 +47,34 @@
 		// Optimistically update the room state
 		if (!room) throw new Error('Room not found');
 		room.current[position] = !tile;
-		room.solved = room?.current.every(
-			(val: boolean, index: number) => val === room?.figure?.figure[index]
-		);
+		room.solved = room.current.every((val: boolean, index: number) => val === figure.figure[index]);
 
 		// Syncronize the game state with the database
 		const { error } = await supabase
 			.from('rooms')
-			.update({ current: room?.current, solved: room?.solved })
-			.eq('id', room?.id);
+			.update({ current: room.current, solved: room.solved })
+			.eq('id', room.id);
 
 		// Rollback the change on error (i.e. network issue)
 		if (error) {
 			room.current[position] = tile;
-			room.solved = room?.current.every((val, index) => val === room?.current[index]);
+			room.solved = room.current.every((val, index) => val === room.current[index]);
 		}
 	};
 
 	// Convert 2D array row and column to 1D array index
 	$: index = (row: number, column: number, width: number) => row * width + column;
 	$: tile = (row: number, column: number, width: number): boolean =>
-		room?.current[index(row, column, width)];
+		room.current[index(row, column, width)];
 
 	$: contiguousTiles = (position: number, type: 'column' | 'row') => {
 		let result: number[] = [0];
 
 		let current_index = 0;
-		for (let i = 0; i < room?.figure?.width; i++) {
+		for (let i = 0; i < figure.width; i++) {
 			const isRow = type === 'row';
 			const isChecked =
-				room?.figure?.figure[
-					isRow ? index(position, i, room?.figure?.width) : index(i, position, room?.figure?.width)
-				];
+				figure.figure[isRow ? index(position, i, figure.width) : index(i, position, figure.width)];
 
 			if (isChecked) result[current_index] = (result[current_index] || 0) + 1;
 			else if (result[current_index] > 0) current_index++;
@@ -88,8 +85,8 @@
 </script>
 
 <div class="d-flex flex-column align-items-center m-auto">
-	<h1>Game {room?.id.slice(0, 4)}</h1>
-	<p>{room?.solved ? 'Solved' : 'Not Solved'}</p>
+	<h1>Game {room.id.slice(0, 4)}</h1>
+	<p>{room.solved ? 'Solved' : 'Not Solved'}</p>
 
 	<h2 class="h4 mt-2">Players</h2>
 	<ul class="p-0">
@@ -107,12 +104,12 @@
 	</ul>
 
 	<h2 class="h4 mt-2">Nonogram</h2>
-	{#if room?.figure}
+	{#if figure}
 		<table>
 			<tbody>
 				<tr>
 					<td />
-					{#each Array(room.figure.width) as _, column}
+					{#each Array(figure.width) as _, column}
 						<td>
 							{#each contiguousTiles(column, 'column') as count}
 								<span class="my-1 badge bg-secondary">{count}</span>
@@ -121,23 +118,20 @@
 						</td>
 					{/each}
 				</tr>
-				{#each Array(room.figure.figure?.length / room.figure.width) as _, row}
+				{#each Array(figure.figure.length / figure.width) as _, row}
 					<tr>
 						{#each contiguousTiles(row, 'row') as count}
 							<span class="mx-1 badge bg-secondary">{count}</span>
 						{/each}
-						{#each room.current.slice(row, row + room.figure.width) as _, column}
+						{#each room.current.slice(row, row + figure.width) as _, column}
 							<td>
 								<button
 									on:click={() =>
-										handleClick(
-											tile(row, column, room?.figure?.width),
-											index(row, column, room?.figure?.width)
-										)}
+										handleClick(tile(row, column, figure.width), index(row, column, figure.width))}
 									class={`btn p-3 p-md-4 p-xl-5 ${
-										tile(row, column, room?.figure?.width) ? 'btn-primary' : 'btn-danger'
+										tile(row, column, figure.width) ? 'btn-primary' : 'btn-danger'
 									}`}
-									disabled={room?.solved}
+									disabled={room.solved}
 								/>
 							</td>
 						{/each}
