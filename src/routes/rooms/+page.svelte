@@ -5,12 +5,9 @@
 	dayjs.extend(relativeTime);
 
 	export let data: PageData;
-
 	let { session, rooms, supabase } = data;
-	let roomlist: any[] = rooms ?? [];
-	let roomlistlength = roomlist?.length ?? 0;
-
 	let players: any = {};
+
 	const playersChannel = supabase
 		.channel(`online-users`, {
 			config: {
@@ -32,9 +29,9 @@
 <div class="col-12">
 	<h1 class="text-center my-5">Rooms</h1>
 
-	{#if roomlistlength > 0}
+	{#if rooms.length > 0}
 		<ul class="row p-0">
-			{#each roomlist as room}
+			{#each rooms as room}
 				<a class="btn col-lg-3 col-md-4 col-12" href="/games/{room.id}">
 					<li class="list-group-item">
 						<div class="card shadow-sm">
