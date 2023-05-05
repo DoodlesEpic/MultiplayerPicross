@@ -2,8 +2,8 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export const actions = {
-	create: async ({ request, locals: { supabase, getSession } }) => {
-		const session = await getSession();
+	create: async ({ request, locals: { supabase } }) => {
+		const session = (await supabase.auth.getSession()).data.session;
 		if (!session) throw redirect(303, '/');
 
 		const data = await request.formData();
