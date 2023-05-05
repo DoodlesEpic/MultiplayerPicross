@@ -8,7 +8,7 @@
 
 	export let data: LayoutData;
 	$: ({ supabase, session, url } = data);
-	let username: string = '';
+	let username = '';
 
 	onMount(async () => {
 		const { data } = supabase.auth.onAuthStateChange((event, _session) => {

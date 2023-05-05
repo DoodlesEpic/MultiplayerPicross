@@ -3,7 +3,7 @@
 	export let data: PageData;
 	let { session, room, supabase } = data;
 
-	const dbMessages = supabase
+	supabase
 		.channel('db-messages')
 		.on(
 			'postgres_changes',
@@ -13,7 +13,7 @@
 				table: 'rooms',
 				filter: `id=eq.${room?.id}`
 			},
-			(payload: { new: { current: boolean[]; solved: boolean; players: any[] } }) => {
+			(payload) => {
 				// Don't update everything in our local object
 				// Since the JOIN on the figure/creator won't be performed in this listener
 				if (room) {
@@ -24,7 +24,7 @@
 		)
 		.subscribe();
 
-	let players: any = {};
+	let players = {};
 	const playersChannel = supabase
 		.channel(`online-users`, {
 			config: {
@@ -59,7 +59,7 @@
 		// Rollback the change on error (i.e. network issue)
 		if (error) {
 			room.current[position] = tile;
-			room.solved = room?.current.every((val: any, index: number) => val === room?.current[index]);
+			room.solved = room?.current.every((val, index) => val === room?.current[index]);
 		}
 	};
 

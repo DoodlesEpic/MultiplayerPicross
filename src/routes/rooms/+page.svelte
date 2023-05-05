@@ -6,7 +6,7 @@
 
 	export let data: PageData;
 	let { session, rooms, supabase } = data;
-	let players: any = {};
+	let players = {};
 
 	const playersChannel = supabase
 		.channel(`online-users`, {

@@ -8,7 +8,6 @@
 
 	let { session, profile } = data;
 
-	let profileForm: any;
 	let loading = false;
 	let fullName: string | null = profile?.full_name;
 	let username: string | null = profile?.username;
@@ -36,16 +35,10 @@
 		<p>Change your profile name and username</p>
 	</div>
 
-	<form
-		method="post"
-		action="?/update"
-		use:enhance={handleSubmit}
-		bind:this={profileForm}
-		class="mb-3"
-	>
+	<form method="post" action="?/update" use:enhance={handleSubmit} class="mb-3">
 		<div class="mb-3">
 			<label for="email" class="form-label">Email</label>
-			<input id="email" type="text" value={session.user.email} class="form-control" disabled />
+			<input id="email" type="text" value={session?.user.email} class="form-control" disabled />
 		</div>
 
 		<div class="mb-3">
