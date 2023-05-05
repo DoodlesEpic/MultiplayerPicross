@@ -93,15 +93,17 @@
 
 	<h2 class="h4 mt-2">Players</h2>
 	<ul class="p-0">
-		{#each Object.keys(players) as player}
-			{#if players[player].slice(-1)[0].room === room?.id}
-				{#await supabase.from('profiles').select().eq('id', player).single()}
-					<li class="list-group-item">Loading username...</li>
-				{:then result}
-					<li class="list-group-item">{result.data?.username}</li>
-				{/await}
+		{#await supabase.from('profiles').select().in('id', Object.keys(players))}
+			<li class="list-group-item">Loading players...</li>
+		{:then { data: players }}
+			{#if players}
+				{#each players as player}
+					<li class="list-group-item">{player.username}</li>
+				{/each}
+			{:else}
+				<li class="list-group-item">No players found</li>
 			{/if}
-		{/each}
+		{/await}
 	</ul>
 
 	<h2 class="h4 mt-2">Nonogram</h2>
