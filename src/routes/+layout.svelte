@@ -9,17 +9,11 @@
 
 	export let data: LayoutData;
 	$: ({ supabase, session, url } = data);
-	let username = '';
 
 	onMount(async () => {
 		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
-			if (_session?.expires_at !== session?.expires_at) {
-				invalidate('supabase:auth');
-			}
+			if (_session?.expires_at !== session?.expires_at) invalidate('supabase:auth');
 		});
-
-		const res = await supabase.from('profiles').select().eq('id', session?.user.id).single();
-		username = res.data?.username ?? session?.user.email?.split('@')[0] ?? 'Profile';
 
 		return () => data.subscription.unsubscribe();
 	});
