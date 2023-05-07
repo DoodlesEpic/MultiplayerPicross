@@ -1,0 +1,17 @@
+{
+    "short_name": "Picross",
+    "name": "Multiplayer Picross",
+    "description": "A online multiplayer picross-style nonograms game",
+    "start-url": "/",
+    "scope": "/",
+    "display": "fullscreen",
+    "theme_color": "#000000",
+    "background_color": "#ffffff",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
