@@ -35,7 +35,7 @@
 
 .fixed-md-top {
 	@extend .shadow-sm;
-	@media (min-width: 768px) {
+	@include media-breakpoint-up(md) {
 		position: fixed;
 		top: 0;
 		left: 0;
