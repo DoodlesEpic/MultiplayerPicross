@@ -133,7 +133,7 @@
 								<button
 									on:click={() =>
 										handleClick(tile(row, column, figure.width), index(row, column, figure.width))}
-									class={`btn p-3 p-md-4 p-xl-5 ${
+									class={`btn p-3 p-md-4 ${figure.width < 10 && 'p-xl-5'} ${
 										tile(row, column, figure.width) ? 'btn-primary' : 'btn-danger'
 									}`}
 									disabled={room.solved}
