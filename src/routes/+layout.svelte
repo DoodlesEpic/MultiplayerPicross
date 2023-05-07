@@ -29,19 +29,15 @@
 	<title>Multiplayer Picross</title>
 </svelte:head>
 
-<nav class="d-none d-md-block navbar fixed-top shadow-sm bg-white">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="/rooms">Multiplayer Picross</a>
+<nav class="navbar fixed-bottom fixed-md-top shadow bg-white">
+	<div class="container-fluid justify-content-around">
+		<a class="d-none d-md-block navbar-brand me-auto" href="/rooms">Multiplayer Picross</a>
 		{#if session}
-			<div>
-				<a class="btn navbar-brand m-0 px-4 p-1" href="/rooms"><i class="bi bi-joystick" /></a>
-				<a class="btn navbar-brand m-0 px-4 p-1" href="/rooms/create"
-					><i class="bi bi-plus-circle" /></a
-				>
-				<a class="btn navbar-brand m-0 px-4 p-1" href="/account"
-					><i class="bi bi-person-circle" /></a
-				>
-			</div>
+			<a class="btn navbar-brand m-0 px-4 p-1" href="/rooms"><i class="bi bi-joystick" /></a>
+			<a class="btn navbar-brand m-0 px-4 p-1" href="/rooms/create"
+				><i class="bi bi-plus-circle" /></a
+			>
+			<a class="btn navbar-brand m-0 px-4 p-1" href="/account"><i class="bi bi-person-circle" /></a>
 		{/if}
 	</div>
 </nav>
@@ -63,13 +59,3 @@
 		</div>
 	</div>
 {/key}
-
-{#if session}
-	<nav class="d-block d-md-none navbar fixed-bottom shadow bg-white">
-		<div class="container-fluid justify-content-around">
-			<a class="btn navbar-brand" href="/rooms"><i class="bi bi-joystick p-5" /></a>
-			<a class="btn navbar-brand" href="/rooms/create"><i class="bi bi-plus-circle p-5" /></a>
-			<a class="btn navbar-brand" href="/account"><i class="bi bi-person-circle p-5" /></a>
-		</div>
-	</nav>
-{/if}

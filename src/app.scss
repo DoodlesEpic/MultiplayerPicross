@@ -32,3 +32,14 @@
 // @import 'bootstrap/scss/placeholders';
 @import 'bootstrap/scss/helpers';
 @import 'bootstrap/scss/utilities/api';
+
+.fixed-md-top {
+	@extend .shadow-sm;
+	@media (min-width: 768px) {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: auto;
+	}
+}
