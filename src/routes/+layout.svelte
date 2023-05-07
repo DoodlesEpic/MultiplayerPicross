@@ -34,6 +34,7 @@
 		<a class="navbar-brand" href="/rooms">Multiplayer Picross</a>
 		{#if session}
 			<div>
+				<a class="navbar-brand" href="/rooms"><i class="bi bi-joystick px-2 py-3" /></a>
 				<a class="navbar-brand" href="/rooms/create"><i class="bi bi-plus-circle px-2 py-3" /></a>
 				<a class="navbar-brand" href="/account"><i class="bi bi-person-circle px-2 py-3" /></a>
 			</div>
