@@ -43,3 +43,9 @@
 		bottom: auto;
 	}
 }
+
+body {
+	@include media-breakpoint-down(md) {
+		user-select: none;
+	}
+}
