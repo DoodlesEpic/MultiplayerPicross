@@ -1,28 +1,12 @@
 <script lang="ts">
 	import '../app.scss';
 	import 'bootstrap-icons/font/bootstrap-icons.scss';
-	import { invalidate } from '$app/navigation';
-	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
-	$: ({ supabase, session, url } = data);
-	let username = '';
-
-	onMount(async () => {
-		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
-			if (_session?.expires_at !== session?.expires_at) {
-				invalidate('supabase:auth');
-			}
-		});
-
-		const res = await supabase.from('profiles').select().eq('id', session?.user.id).single();
-		username = res.data?.username ?? session?.user.email?.split('@')[0] ?? 'Profile';
-
-		return () => data.subscription.unsubscribe();
-	});
+	$: ({ session, url } = data);
 </script>
 
 <svelte:head>
