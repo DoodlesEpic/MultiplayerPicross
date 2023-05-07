@@ -33,7 +33,10 @@
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/rooms">Multiplayer Picross</a>
 		{#if session}
-			<a class="navbar-brand" href="/account">{username}</a>
+			<div>
+				<a class="navbar-brand" href="/rooms/create"><i class="bi bi-plus-circle px-2 py-3" /></a>
+				<a class="navbar-brand" href="/account"><i class="bi bi-person-circle px-2 py-3" /></a>
+			</div>
 		{/if}
 	</div>
 </nav>
@@ -59,9 +62,9 @@
 {#if session}
 	<nav class="d-block d-md-none navbar fixed-bottom shadow bg-white">
 		<div class="container-fluid justify-content-around">
-			<a class="navbar-brand" href="/rooms"><i class="bi bi-joystick" /></a>
-			<a class="navbar-brand" href="/rooms/create"><i class="bi bi-plus-circle" /></a>
-			<a class="navbar-brand" href="/account"><i class="bi bi-person-circle" /></a>
+			<a class="navbar-brand" href="/rooms"><i class="bi bi-joystick p-5" /></a>
+			<a class="navbar-brand" href="/rooms/create"><i class="bi bi-plus-circle p-5" /></a>
+			<a class="navbar-brand" href="/account"><i class="bi bi-person-circle p-5" /></a>
 		</div>
 	</nav>
 {/if}
