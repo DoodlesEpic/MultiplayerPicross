@@ -41,7 +41,7 @@
 	<div class="position-absolute w-100 h-100">
 		<div class="d-flex flex-column h-100">
 			<div
-				class="container d-flex flex-column align-items-center justify-content-center flex-fill py-5"
+				class="container d-flex flex-column flex-fill my-5 py-5"
 				in:fade={{ easing: cubicInOut, duration: 100, delay: 150 }}
 				out:fade={{ easing: cubicInOut, duration: 100 }}
 			>
