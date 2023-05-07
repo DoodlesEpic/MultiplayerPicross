@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.scss';
+	import 'bootstrap-icons/font/bootstrap-icons.scss';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -57,12 +58,10 @@
 
 {#if session}
 	<nav class="d-block d-md-none navbar fixed-bottom shadow bg-white">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="/rooms">Play</a>
-
-			<a class="navbar-brand" href="/rooms/create">Create</a>
-
-			<a class="navbar-brand" href="/account">{username}</a>
+		<div class="container-fluid justify-content-around">
+			<a class="navbar-brand" href="/rooms"><i class="bi bi-joystick" /></a>
+			<a class="navbar-brand" href="/rooms/create"><i class="bi bi-plus-circle" /></a>
+			<a class="navbar-brand" href="/account"><i class="bi bi-person-circle" /></a>
 		</div>
 	</nav>
 {/if}
