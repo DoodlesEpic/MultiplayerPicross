@@ -28,7 +28,7 @@
 	<title>Multiplayer Picross</title>
 </svelte:head>
 
-<nav class="navbar fixed-top shadow-sm bg-white">
+<nav class="d-none d-md-block navbar fixed-top shadow-sm bg-white">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/rooms">Multiplayer Picross</a>
 		{#if session}
@@ -41,12 +41,28 @@
 	<div class="position-absolute w-100 h-100">
 		<div class="d-flex flex-column h-100">
 			<div
-				class="container d-flex flex-column align-items-center justify-content-center flex-fill my-5 py-5"
+				class="container d-flex align-items-center justify-content-center flex-fill mt-md-5 py-5"
 				in:fade={{ easing: cubicInOut, duration: 100, delay: 150 }}
 				out:fade={{ easing: cubicInOut, duration: 100 }}
 			>
-				<slot />
+				<div
+					class="row d-flex flex-column align-items-center justify-content-center flex-fill mb-5"
+				>
+					<slot />
+				</div>
 			</div>
 		</div>
 	</div>
 {/key}
+
+{#if session}
+	<nav class="d-block d-md-none navbar fixed-bottom shadow bg-white">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/rooms">Play</a>
+
+			<a class="navbar-brand" href="/rooms/create">Create</a>
+
+			<a class="navbar-brand" href="/account">{username}</a>
+		</div>
+	</nav>
+{/if}
