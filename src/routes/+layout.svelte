@@ -21,6 +21,7 @@
 
 <svelte:head>
 	<title>Multiplayer Picross</title>
+	<meta name="description" content="Picross-style nonogram puzzles, but multiplayer." />
 </svelte:head>
 
 <nav class="navbar fixed-bottom fixed-md-top shadow bg-white">
