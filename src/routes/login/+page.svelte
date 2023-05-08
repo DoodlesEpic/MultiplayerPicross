@@ -17,6 +17,16 @@
 		supabaseClient={data.supabase}
 		redirectTo={`${data.url}/logging-in?redirect=/rooms`}
 		providers={['github', 'discord']}
-		appearance={{ theme: ThemeSupa }}
+		appearance={{
+			theme: ThemeSupa,
+			variables: {
+				default: {
+					colors: {
+						brand: 'rgb(13, 110, 253)',
+						brandAccent: 'rgb(10, 100, 240)'
+					}
+				}
+			}
+		}}
 	/>
 </div>
