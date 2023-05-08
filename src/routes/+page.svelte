@@ -20,7 +20,7 @@
 	</section>
 
 	<section class="my-5">
-		<h1>Picross, but Multiplayer</h1>
+		<h2>Picross, but Multiplayer</h2>
 		<p>
 			This is a multiplayer game where you can solve nonogram puzzles with your friends or random
 			strangers
