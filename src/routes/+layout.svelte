@@ -27,11 +27,23 @@
 	<div class="container-fluid justify-content-around">
 		<a class="d-none d-md-block navbar-brand me-auto" href="/rooms">Multiplayer Picross</a>
 		{#if session}
-			<a class="btn navbar-brand m-0 px-4 p-1" href="/rooms"><i class="bi bi-joystick" /></a>
-			<a class="btn navbar-brand m-0 px-4 p-1" href="/rooms/create"
-				><i class="bi bi-plus-circle" /></a
-			>
-			<a class="btn navbar-brand m-0 px-4 p-1" href="/account"><i class="bi bi-person-circle" /></a>
+			<ul class="nav nav-pills flex-grow-1 flex-md-grow-0 justify-content-around">
+				<a
+					class="btn navbar-brand nav-link m-0 px-4 p-1"
+					class:active={url.pathname === '/rooms'}
+					href="/rooms"><i class="bi bi-joystick" /></a
+				>
+				<a
+					class="btn navbar-brand nav-link m-0 px-4 p-1"
+					class:active={url.pathname === '/rooms/create'}
+					href="/rooms/create"><i class="bi bi-plus-circle" /></a
+				>
+				<a
+					class="btn navbar-brand nav-link m-0 px-4 p-1"
+					class:active={url.pathname === '/account'}
+					href="/account"><i class="bi bi-person-circle" /></a
+				>
+			</ul>
 		{/if}
 	</div>
 </nav>
