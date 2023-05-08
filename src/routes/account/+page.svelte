@@ -29,6 +29,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Multiplayer Picross | Profile</title>
+</svelte:head>
+
 <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 	<div class="text-center mb-5">
 		<h1>Profile</h1>

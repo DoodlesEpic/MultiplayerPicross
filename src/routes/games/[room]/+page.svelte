@@ -85,6 +85,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Multiplayer Picross | Game</title>
+</svelte:head>
+
 <div class="d-flex flex-column align-items-center m-auto">
 	<h1>Game {room.id.slice(0, 4)}</h1>
 	<p>{room.solved ? 'Solved' : 'Not Solved'}</p>

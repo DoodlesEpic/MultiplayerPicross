@@ -24,6 +24,10 @@
 		});
 </script>
 
+<svelte:head>
+	<title>Multiplayer Picross | Rooms</title>
+</svelte:head>
+
 <div class="col-12">
 	<h1 class="text-center mb-5">Rooms</h1>
 
