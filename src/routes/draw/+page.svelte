@@ -47,7 +47,7 @@
 	</table>
 
 	<input
-		class="hidden"
+		class="d-none"
 		aria-hidden="true"
 		type="text"
 		name="figure"
