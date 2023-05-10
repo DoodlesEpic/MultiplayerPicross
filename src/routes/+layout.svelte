@@ -46,8 +46,8 @@
 				>
 				<a
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
-					class:active={url.pathname === '/account'}
-					href="/account"><i class="bi bi-person-circle" /></a
+					class:active={url.pathname === '/profile'}
+					href="/profile"><i class="bi bi-person-circle" /></a
 				>
 			</ul>
 		{/if}
