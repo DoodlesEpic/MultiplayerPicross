@@ -25,11 +25,11 @@
 </script>
 
 <svelte:head>
-	<title>Multiplayer Picross | Rooms</title>
+	<title>Multiplayer Picross | Games</title>
 </svelte:head>
 
 <div class="col-12">
-	<h1 class="text-center mb-5">Rooms</h1>
+	<h1 class="text-center mb-5">Games</h1>
 
 	{#if rooms.length > 0}
 		<ul class="row p-0">
@@ -63,5 +63,5 @@
 		<p>No rooms</p>
 	{/if}
 
-	<a class="btn btn-primary" href="/rooms/create">Create room</a>
+	<a class="btn btn-primary" href="/games/create">Create room</a>
 </div>
