@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 
 	export let data: PageData;
-	$: if (data.session) goto('/rooms');
+	$: if (data.session) goto('/games');
 </script>
 
 <svelte:head>

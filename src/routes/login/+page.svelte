@@ -5,7 +5,7 @@
 	import { goto } from '$app/navigation';
 
 	export let data: PageData;
-	$: if (data.session) goto('/rooms');
+	$: if (data.session) goto('/games');
 </script>
 
 <svelte:head>
@@ -15,7 +15,7 @@
 <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 	<Auth
 		supabaseClient={data.supabase}
-		redirectTo={`${data.url}/logging-in?redirect=/rooms`}
+		redirectTo={`${data.url}/logging-in?redirect=/games`}
 		providers={['github', 'discord']}
 		appearance={{
 			theme: ThemeSupa,
