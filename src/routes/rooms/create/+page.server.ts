@@ -4,23 +4,24 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 
 const get_figure = (supabase: SupabaseClient, size: string, collection: string, width: number) => {
 	const query = supabase.from('random_figure').select(`id, creator, figure`);
+	const official = query.is('creator', null);
+	const community = query.not('creator', 'is', null);
 
-	if (size !== 'any') {
+	if (size !== 'any')
 		switch (collection) {
 			case 'official':
-				return query.is('creator', null).eq('width', width);
+				return official.eq('width', width);
 			case 'community':
-				return query.not('creator', 'is', null).eq('width', width);
+				return community.eq('width', width);
 			default:
 				return query.eq('width', width);
 		}
-	}
 
 	switch (collection) {
 		case 'official':
-			return query.is('creator', null);
+			return official;
 		case 'community':
-			return query.not('creator', 'is', null);
+			return community;
 		default:
 			return query;
 	}
