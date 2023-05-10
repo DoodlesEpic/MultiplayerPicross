@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { string } from '$env/static/private';
 	import type { PageData } from './$types';
 	export let data: PageData;
 	let { session, room, supabase } = data;
