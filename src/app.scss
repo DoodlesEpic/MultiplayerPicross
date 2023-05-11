@@ -49,3 +49,10 @@ body {
 		user-select: none;
 	}
 }
+
+@supports (scrollbar-gutter: stable) {
+	html {
+		overflow-y: auto;
+		scrollbar-gutter: stable;
+	}
+}
