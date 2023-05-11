@@ -42,7 +42,7 @@
 				<a
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/draw'}
-					href="/draw"><i class="bi bi-brush" /></a
+					href="/draw"><i class="bi bi-brush-fill" /></a
 				>
 				<a
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
