@@ -17,7 +17,8 @@
 		"@supabase/auth-ui-svelte": "^0.2.7",
 		"@supabase/supabase-js": "^2.38.1",
 		"bootstrap-icons": "^1.11.1",
-		"dayjs": "^1.11.10"
+		"dayjs": "^1.11.10",
+		"eslint-plugin-svelte": "^2.34.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
@@ -27,7 +28,6 @@
 		"bootstrap": "^5.3.2",
 		"eslint": "^8.51.0",
 		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.0.3",
 		"sass": "^1.69.4",
