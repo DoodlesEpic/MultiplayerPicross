@@ -39,5 +39,5 @@
 		"vite": "^4.4.11"
 	},
 	"type": "module",
-	"packageManager": "yarn@3.6.4+sha256.7f7d51b38db0d94adf25c512e3f3d3b47d23c97922eecc540f7440f116bdb99a"
+	"packageManager": "yarn@3.6.4"
 }
