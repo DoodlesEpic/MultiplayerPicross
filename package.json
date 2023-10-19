@@ -11,23 +11,21 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
-	"dependencies": {
+	"devDependencies": {
 		"@supabase/auth-helpers-sveltekit": "^0.10.3",
 		"@supabase/auth-ui-shared": "^0.1.8",
 		"@supabase/auth-ui-svelte": "^0.2.7",
 		"@supabase/supabase-js": "^2.38.1",
-		"bootstrap-icons": "^1.11.1",
-		"dayjs": "^1.11.10",
-		"eslint-plugin-svelte": "^2.34.0"
-	},
-	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.25.2",
 		"@typescript-eslint/eslint-plugin": "^6.8.0",
 		"@typescript-eslint/parser": "^6.8.0",
 		"bootstrap": "^5.3.2",
+		"bootstrap-icons": "^1.11.1",
+		"dayjs": "^1.11.10",
 		"eslint": "^8.51.0",
 		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-svelte": "^2.34.0",
 		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.0.3",
 		"sass": "^1.69.4",
