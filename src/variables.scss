@@ -1,4 +1,5 @@
 /* Variables and mixins declared here will be available in all other SCSS files */
+$enable-dark-mode: false;
 @import 'bootstrap/scss/functions'; /* Override Bootstrap's variables here */
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/maps';
