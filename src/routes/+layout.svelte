@@ -27,30 +27,36 @@
 
 <nav class="navbar fixed-bottom fixed-md-top shadow bg-white">
 	<div class="container-fluid justify-content-around">
-		<a class="d-none d-md-block navbar-brand me-auto" href={resolve('/games')}
-			>Multiplayer Picross</a
+		<a
+			title="Multiplayer Picross"
+			class="d-none d-md-block navbar-brand me-auto"
+			href={resolve('/games')}>Multiplayer Picross</a
 		>
 		{#if session}
 			<ul class="nav nav-pills flex-grow-1 flex-md-grow-0 justify-content-around">
 				<a
+					title="See available rooms"
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/games'}
-					href={resolve('/games')}><i class="bi bi-joystick" /></a
+					href={resolve('/games')}><i class="bi bi-joystick"></i></a
 				>
 				<a
+					title="Create new game room"
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/games/create'}
-					href={resolve('/games/create')}><i class="bi bi-plus-circle" /></a
+					href={resolve('/games/create')}><i class="bi bi-plus-circle"></i></a
 				>
 				<a
+					title="Create new nonogram"
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/draw'}
-					href={resolve('/draw')}><i class="bi bi-brush-fill" /></a
+					href={resolve('/draw')}><i class="bi bi-brush-fill"></i></a
 				>
 				<a
+					title="User account"
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/profile'}
-					href={resolve('/profile')}><i class="bi bi-person-circle" /></a
+					href={resolve('/profile')}><i class="bi bi-person-circle"></i></a
 				>
 			</ul>
 		{/if}
