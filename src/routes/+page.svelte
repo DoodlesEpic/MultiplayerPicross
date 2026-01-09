@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	export let data: PageData;
-	$: if (data.session) goto('/games');
+	$: if (data.session) goto(resolve('/games'));
 </script>
 
 <svelte:head>
@@ -39,6 +40,6 @@
 
 	<section class="my-5">
 		<h2 class="mb-4">Start playing</h2>
-		<a href="/login" class="btn btn-primary shadow-sm px-5 py-2">Play</a>
+		<a href={resolve('/login')} class="btn btn-primary shadow-sm px-5 py-2">Play</a>
 	</section>
 </div>

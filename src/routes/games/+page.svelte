@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import type { PageData } from './$types';
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
@@ -34,7 +35,7 @@
 	{#if rooms.length > 0}
 		<ul class="row p-0">
 			{#each rooms as room}
-				<a class="btn col-lg-3 col-md-4 col-12" href="/games/{room.id}">
+				<a class="btn col-lg-3 col-md-4 col-12" href={resolve(`/games/${room.id}`)}>
 					<li class="list-group-item">
 						<div class="card shadow-sm">
 							<div class="card-body text-start">
@@ -63,5 +64,5 @@
 		<p>No rooms</p>
 	{/if}
 
-	<a class="btn btn-primary" href="/games/create">Create room</a>
+	<a class="btn btn-primary" href={resolve('/games/create')}>Create room</a>
 </div>

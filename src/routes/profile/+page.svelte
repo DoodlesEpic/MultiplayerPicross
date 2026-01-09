@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import type { ActionData, PageData } from './$types';
 
 	export let data: PageData;
@@ -24,7 +25,7 @@
 		return async () => {
 			await data.supabase.auth.signOut();
 			loading = false;
-			goto('/');
+			goto(resolve('/'));
 		};
 	};
 </script>

@@ -2,6 +2,7 @@
 	import '../app.scss';
 	import 'bootstrap-icons/font/bootstrap-icons.scss';
 	import { invalidate } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
@@ -26,28 +27,30 @@
 
 <nav class="navbar fixed-bottom fixed-md-top shadow bg-white">
 	<div class="container-fluid justify-content-around">
-		<a class="d-none d-md-block navbar-brand me-auto" href="/games">Multiplayer Picross</a>
+		<a class="d-none d-md-block navbar-brand me-auto" href={resolve('/games')}
+			>Multiplayer Picross</a
+		>
 		{#if session}
 			<ul class="nav nav-pills flex-grow-1 flex-md-grow-0 justify-content-around">
 				<a
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/games'}
-					href="/games"><i class="bi bi-joystick" /></a
+					href={resolve('/games')}><i class="bi bi-joystick" /></a
 				>
 				<a
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/games/create'}
-					href="/games/create"><i class="bi bi-plus-circle" /></a
+					href={resolve('/games/create')}><i class="bi bi-plus-circle" /></a
 				>
 				<a
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/draw'}
-					href="/draw"><i class="bi bi-brush-fill" /></a
+					href={resolve('/draw')}><i class="bi bi-brush-fill" /></a
 				>
 				<a
 					class="btn navbar-brand nav-link m-0 px-4 p-1"
 					class:active={url.pathname === '/profile'}
-					href="/profile"><i class="bi bi-person-circle" /></a
+					href={resolve('/profile')}><i class="bi bi-person-circle" /></a
 				>
 			</ul>
 		{/if}

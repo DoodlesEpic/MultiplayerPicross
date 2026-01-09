@@ -3,9 +3,10 @@
 	import { ThemeSupa } from '@supabase/auth-ui-shared';
 	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	export let data: PageData;
-	$: if (data.session) goto('/games');
+	$: if (data.session) goto(resolve('/games'));
 </script>
 
 <svelte:head>
