@@ -29,7 +29,7 @@ const get_figure = (supabase: SupabaseClient, size: string, collection: string, 
 export const actions = {
 	create: async ({ request, locals: { supabase } }) => {
 		const session = (await supabase.auth.getSession()).data.session;
-		if (!session) throw redirect(303, '/');
+		if (!session) redirect(303, '/');
 
 		const data = await request.formData();
 		const size = data.get('nonogram-size') as '5x5' | '10x10' | 'any';
@@ -52,6 +52,6 @@ export const actions = {
 			.single();
 		if (room.error) return fail(500, { error: room.error });
 
-		throw redirect(303, `/games/${room.data.id}`);
+		redirect(303, `/games/${room.data.id}`);
 	}
 } satisfies Actions;

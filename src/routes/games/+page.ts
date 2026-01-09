@@ -3,7 +3,7 @@ import type { PageLoad } from './$types';
 
 export const load = (async ({ parent }) => {
 	const { session, supabase } = await parent();
-	if (!session) throw redirect(303, '/');
+	if (!session) redirect(303, '/');
 
 	const { data: rooms, error } = await supabase
 		.from('rooms')

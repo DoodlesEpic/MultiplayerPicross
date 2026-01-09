@@ -3,5 +3,5 @@ import type { PageLoad } from './$types';
 
 export const load = (async ({ parent }) => {
 	const { session } = await parent();
-	if (!session) throw redirect(303, '/');
+	if (!session) redirect(303, '/');
 }) satisfies PageLoad;

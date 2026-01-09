@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url, locals: { supabase } }) => {
 	const session = (await supabase.auth.getSession()).data.session;
-	if (session) throw redirect(303, '/games');
+	if (session) redirect(303, '/games');
 
 	return { url: url.origin };
 };
