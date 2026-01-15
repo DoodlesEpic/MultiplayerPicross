@@ -858,16 +858,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.49.4":
-  version: 2.49.4
-  resolution: "@sveltejs/kit@npm:2.49.4"
+"@sveltejs/kit@npm:^2.49.5":
+  version: 2.49.5
+  resolution: "@sveltejs/kit@npm:2.49.5"
   dependencies:
     "@standard-schema/spec": ^1.0.0
     "@sveltejs/acorn-typescript": ^1.0.5
     "@types/cookie": ^0.6.0
     acorn: ^8.14.1
     cookie: ^0.6.0
-    devalue: ^5.3.2
+    devalue: ^5.6.2
     esm-env: ^1.2.2
     kleur: ^4.1.5
     magic-string: ^0.30.5
@@ -888,7 +888,7 @@ __metadata:
       optional: true
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 87e0a2281cdce665d15795e0818d9c61cd5216f747ab7744dfe8c92aba5da2efc418a2dc5cb274eabab2be1e19d19fd46187f8e41b6da6238ccb418c8fe0c918
+  checksum: a575d67df666a3fdddf76e71e5a28d080324b6327848cf8de86f0178b2b8741b28a5cb30c98f73ef746db735bcb5e63bd8f050ef6cf1feec2f737a5e75b81f98
   languageName: node
   linkType: hard
 
@@ -1489,10 +1489,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devalue@npm:^5.3.2, devalue@npm:^5.5.0":
-  version: 5.6.1
-  resolution: "devalue@npm:5.6.1"
-  checksum: 1636459f960824d952dc53a5732c07e224f993bde7e968b223962a5d95823fe3456b66798cb9d9727f15426487918745180fa46db3ffed11eb481466f72eed4b
+"devalue@npm:^5.6.2":
+  version: 5.6.2
+  resolution: "devalue@npm:5.6.2"
+  checksum: 9d031092e3a6ff3a98820261375826ae88846c006857713816b7c1c007224982bdf94abc93b0f33218baff40f4b9d635001d1dfef0860a9e4074d8b7eac4f476
   languageName: node
   linkType: hard
 
@@ -2316,7 +2316,7 @@ __metadata:
     "@supabase/auth-ui-svelte": ^0.2.9
     "@supabase/supabase-js": ^2.90.1
     "@sveltejs/adapter-auto": ^7.0.0
-    "@sveltejs/kit": ^2.49.4
+    "@sveltejs/kit": ^2.49.5
     "@sveltejs/vite-plugin-svelte": ^4.0.4
     "@typescript-eslint/eslint-plugin": ^8.52.0
     "@typescript-eslint/parser": ^8.52.0
@@ -2330,7 +2330,7 @@ __metadata:
     prettier: ^3.7.4
     prettier-plugin-svelte: ^3.4.1
     sass: ^1.97.2
-    svelte: ^5.46.1
+    svelte: ^5.46.3
     svelte-check: ^4.3.5
     svelte-preprocess: ^6.0.3
     tslib: ^2.8.1
@@ -3235,9 +3235,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.46.1":
-  version: 5.46.1
-  resolution: "svelte@npm:5.46.1"
+"svelte@npm:^5.46.3":
+  version: 5.46.4
+  resolution: "svelte@npm:5.46.4"
   dependencies:
     "@jridgewell/remapping": ^2.3.4
     "@jridgewell/sourcemap-codec": ^1.5.0
@@ -3247,14 +3247,14 @@ __metadata:
     aria-query: ^5.3.1
     axobject-query: ^4.1.0
     clsx: ^2.1.1
-    devalue: ^5.5.0
+    devalue: ^5.6.2
     esm-env: ^1.2.1
     esrap: ^2.2.1
     is-reference: ^3.0.3
     locate-character: ^3.0.0
     magic-string: ^0.30.11
     zimmerframe: ^1.1.2
-  checksum: 04dd23ee8c1e9f016058f46d5660a534ecdcbaa52cb20971963239e14de52b8a8660a9eb3689b66a339641397b61c44f44db6338f3c95fe4fd913e43db8730d3
+  checksum: 05732e2539f628ab5eff3f556847a7f9710e0df39501ab1f1710fa9cd367e98ce5bd877584d7a8d4e6ce61a09f2688b3ce545c1740234a4a71732ea8f7d616e9
   languageName: node
   linkType: hard
 
