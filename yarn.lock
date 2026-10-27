@@ -966,6 +966,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/trusted-types@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "@types/trusted-types@npm:2.0.7"
+  checksum: 8e4202766a65877efcf5d5a41b7dd458480b36195e580a3b1085ad21e948bc417d55d6f8af1fd2a7ad008015d4117d5fdfe432731157da3c68678487174e4ba3
+  languageName: node
+  linkType: hard
+
 "@types/ws@npm:^8.18.1":
   version: 8.18.1
   resolution: "@types/ws@npm:8.18.1"
@@ -1496,6 +1503,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"devalue@npm:^5.6.3":
+  version: 5.6.3
+  resolution: "devalue@npm:5.6.3"
+  checksum: f2ade995d38bc298442d98dc06bdeadb2e255ef7546ece6920ba5c8e050f620ba685f97669f40f32acb007f32c31364131051fd7345d510124f700f25a548143
+  languageName: node
+  linkType: hard
+
 "emoji-regex@npm:^8.0.0":
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
@@ -1748,12 +1762,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esrap@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "esrap@npm:2.2.1"
+"esrap@npm:^2.2.2":
+  version: 2.2.3
+  resolution: "esrap@npm:2.2.3"
   dependencies:
     "@jridgewell/sourcemap-codec": ^1.4.15
-  checksum: 003116a91222111e6dea84101a20aa8c9ca20dbebd1559d47ff694f6348fca6fb8a1dfebe1bcefa0b92a17331156befcf20838072fc4ddc67eb8bd3a5dc22006
+  checksum: f21a8d3e68e8f529b12c37ebb709ca255fb78887225114e54ac07db915e6d6a21520f2de922f7b254d741a20adba2eea48dbde8217cab58d3e1c619023dff915
   languageName: node
   linkType: hard
 
@@ -2330,7 +2344,7 @@ __metadata:
     prettier: ^3.7.4
     prettier-plugin-svelte: ^3.4.1
     sass: ^1.97.2
-    svelte: ^5.46.3
+    svelte: ^5.51.5
     svelte-check: ^4.3.5
     svelte-preprocess: ^6.0.3
     tslib: ^2.8.1
@@ -3235,26 +3249,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.46.3":
-  version: 5.46.4
-  resolution: "svelte@npm:5.46.4"
+"svelte@npm:^5.51.5":
+  version: 5.53.0
+  resolution: "svelte@npm:5.53.0"
   dependencies:
     "@jridgewell/remapping": ^2.3.4
     "@jridgewell/sourcemap-codec": ^1.5.0
     "@sveltejs/acorn-typescript": ^1.0.5
     "@types/estree": ^1.0.5
+    "@types/trusted-types": ^2.0.7
     acorn: ^8.12.1
     aria-query: ^5.3.1
     axobject-query: ^4.1.0
     clsx: ^2.1.1
-    devalue: ^5.6.2
+    devalue: ^5.6.3
     esm-env: ^1.2.1
-    esrap: ^2.2.1
+    esrap: ^2.2.2
     is-reference: ^3.0.3
     locate-character: ^3.0.0
     magic-string: ^0.30.11
     zimmerframe: ^1.1.2
-  checksum: 05732e2539f628ab5eff3f556847a7f9710e0df39501ab1f1710fa9cd367e98ce5bd877584d7a8d4e6ce61a09f2688b3ce545c1740234a4a71732ea8f7d616e9
+  checksum: fa6e39d44bbed6ad7be3737aa83acd0d68317d03e8545deab3f5c4777c92d867951f497fc034f78bb15b1e54f32b7012277e2087a1ccd90bffdf30c22b5059a9
   languageName: node
   linkType: hard
 
